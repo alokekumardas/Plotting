@@ -1,0 +1,10 @@
+ZJetSF_2016_looseCRge2ge0 = 1.226 
+ZJetSF_2016_looseCRge2e0 = 1.226 
+ZJetSF_2016_looseCRe2e0 = 1.227 
+ZJetSF_2016_looseCRe3e0 = 1.253 
+ZJetSF_2016_looseCRge4e0 = 1.124 
+ZJetSF_2016_looseCRe2e1 = 1.236 
+ZJetSF_2016_looseCRe3e1 = 1.265 
+ZJetSF_2016_looseCRe2e2 = 1.252 
+ZJetSF_2016_looseCRe3ge2 = 1.305 
+ZJetSF_2016_tight = 1.221 
