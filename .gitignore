@@ -1,0 +1,14 @@
+*.root
+*.pdf
+*.pyc
+*.png
+*.tgz
+*.log
+*.txt
+
+MyCondor_nominalAndSyst/condor
+MyCondor_nominalAndSyst/condor_Nov15
+
+MyCondor_nominalAndSyst/oldOnes/histograms_2016
+MyCondor_nominalAndSyst/oldOnes/histograms_2017
+MyCondor_nominalAndSyst/oldOnes/histograms_2018
