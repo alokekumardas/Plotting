@@ -16,3 +16,10 @@ MyCondor_nominalAndSyst/oldOnes/histograms_2016
 MyCondor_nominalAndSyst/oldOnes/histograms_2017
 MyCondor_nominalAndSyst/oldOnes/histograms_2018
 
+FullYearMisIDEleSFvalues.py
+HistogramListDict_backupNov1.py
+MisIDEleSFvalues.py
+ZJetSFvalues.py
+makeVGammaSF.py
+myroottest.py
+
