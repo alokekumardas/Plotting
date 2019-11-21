@@ -5,6 +5,7 @@
 *.tgz
 *.log
 *.txt
+*.tex
 .*
 !/.gitignore
 
