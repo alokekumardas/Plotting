@@ -366,8 +366,8 @@ def GetHistogramInfo(extraCuts="(passPresel_Mu && nJet>=3 && nBJet>=1)*", extraP
     "phosel_MassEGamma_HadronicPhoton"      : ["phoMassLepGamma", "phosel_MassEGamma_HadronicPhoton",      [200,0,200], extraPhotonCuts%("nPho==1 && photonIsHadronicPhoton"), "", True],
     "phosel_MassEGamma_HadronicFake"        : ["phoMassLepGamma", "phosel_MassEGamma_HadronicFake",        [200,0,200], extraPhotonCuts%("nPho==1 && photonIsHadronicFake"),   "", True],
     # "phosel_MassEGamma"                   : ["phoMassLepGamma", "phosel_MassEGamma",                     [200,0,200], extraPhotonCuts%("nPho==1"), "", True],
-    "phosel_MassEGammaMisIDEle"             : ["phoMassLepGamma", "phosel_MassEGammaMisIDEle",             [200,0,200], extraPhotonCuts%("nPho==1 && photonIsMisIDEle"), "", True],
-    "phosel_MassEGammaOthers"               : ["phoMassLepGamma", "phosel_MassEGammaOthers",               [200,0,200], extraPhotonCuts%("nPho==1 && (photonIsGenuine||photonIsHadronicFake||photonIsHadronicPhoton)"), "", True],
+    #"phosel_MassEGammaMisIDEle"             : ["phoMassLepGamma", "phosel_MassEGammaMisIDEle",             [200,0,200], extraPhotonCuts%("nPho==1 && photonIsMisIDEle"), "", True],
+    #"phosel_MassEGammaOthers"               : ["phoMassLepGamma", "phosel_MassEGammaOthers",               [200,0,200], extraPhotonCuts%("nPho==1 && (photonIsGenuine||photonIsHadronicFake||photonIsHadronicPhoton)"), "", True],
     "phosel_MassEGamma_barrel"              : ["phoMassLepGamma", "phosel_MassEGamma_barrel",              [200,0,200], extraPhotonCuts%("nPhoBarrel>=1"), "", True],
     "phosel_MassEGamma_MisIDEle_barrel"     : ["phoMassLepGamma", "phosel_MassEGamma_MisIDEle_barrel",     [200,0,200], extraPhotonCuts%("nPhoBarrel>=1 && photonIsMisIDEle"), "", True],
     "phosel_MassEGamma_GenuinePhoton_barrel": ["phoMassLepGamma", "phosel_MassEGamma_GenuinePhoton_barrel",[200,0,200], extraPhotonCuts%("nPhoBarrel>=1 && photonIsGenuine"), "", True],
@@ -394,5 +394,12 @@ def GetHistogramInfo(extraCuts="(passPresel_Mu && nJet>=3 && nBJet>=1)*", extraP
     "phosel_noCutSIEIEChIso_HadronicPhoton_endcap" : ["loosePhoPFChIso" , "phosel_noCutSIEIEChIso_HadronicPhoton_endcap", [200,0,20], extraPhotonCuts%("loosePhoMediumIDPassHoverE && loosePhoMediumIDPassNeuIso && loosePhoMediumIDPassPhoIso && loosePhotonIsHadronicPhoton && !loosePhoIsBarrel"), "", False],
     "phosel_noCutSIEIEChIso_HadronicFake_endcap"   : ["loosePhoPFChIso" , "phosel_noCutSIEIEChIso_HadronicFake_endcap"  , [200,0,20], extraPhotonCuts%("loosePhoMediumIDPassHoverE && loosePhoMediumIDPassNeuIso && loosePhoMediumIDPassPhoIso && loosePhotonIsHadronicFake && !loosePhoIsBarrel"), "", False],
     "phosel_noCutSIEIEChIso"                       : ["loosePhoPFChIso" , "phosel_noCutSIEIEChIso"                      , [200,0,20], extraPhotonCuts%("loosePhoMediumIDPassHoverE && loosePhoMediumIDPassNeuIso && loosePhoMediumIDPassPhoIso"), "", True],
+	#
+
+    "phosel_MassEGamma_LightTag"  : ["phoMassLepGamma", "phosel_MassEGamma_LightTag",        [200,0,200], extraPhotonCuts%("nPho==1 && Max$(jetHadronFlavour)==0"),   "", True],
+    "phosel_MassEGamma_CTag"      : ["phoMassLepGamma", "phosel_MassEGamma_CTag",            [200,0,200], extraPhotonCuts%("nPho==1 && Max$(jetHadronFlavour)==4"),   "", True],
+    "phosel_MassEGamma_BTag"      : ["phoMassLepGamma", "phosel_MassEGamma_BTag",            [200,0,200], extraPhotonCuts%("nPho==1 && Max$(jetHadronFlavour)==5"),   "", True],
+
+	#
 	}
     return histogramInfo
