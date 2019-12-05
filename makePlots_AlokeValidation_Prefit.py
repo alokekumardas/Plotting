@@ -274,10 +274,7 @@ if isLooseCRe3e1Selection:
 		regionText = ", N_{j}=3, N_{b}=1"
 
 if isLooseCRe2e2Selection:
-	if   selYear == "2016": MisIDEleSF = 2.208
-	elif selYear == "2017": MisIDEleSF = 2.391
-	elif selYear == "2018": MisIDEleSF = 1.598
-	else: print "wrong year"
+
 	if Dilepmass:
 		plotDirectory = "looseCRe2e2plots_%s_%s_Dilep/"%(channel,selYear)
 		_fileDir = "histograms_%s/%s/Dilep_hists_looseCRe2e2/"%(selYear,channel)
@@ -892,6 +889,7 @@ def drawHist(histName,plotInfo, plotDirectory, _file, skipData = False):
 	elif 'Mu' in finalState:
 		dataHist = _file["DataMu"].Get("%s_DataMu"%(histName))
 
+	#print "==>",dataHist.GetBinContent(1);
 	noData = False
 	if type(dataHist)==type(TObject()): noData = True
 

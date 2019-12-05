@@ -40,6 +40,7 @@ declare -a SampleListMu=("TTGamma" "TTbar" "TGJets" "SingleTop" "WJets" "ZJets" 
 
 for mysample in ${SampleList[@]}; do
 	python makeHistograms.py -c $channel -y $year --$controlRegion -s $mysample --makePlotsForSF
+	#python makeHistograms.py -c $channel -y $year --$controlRegion -s $mysample --plot phosel_MET
 done
 wait
 #loop finishes

@@ -565,11 +565,11 @@ histograms = {
 		"phosel_noCut_SIEIE_HadronicPhoton"      : ["Sigma Ieta Ieta"            , "Events/0.0007", 1, [-1,-1], regionText, YesLog, "Hadronic Photon"],
 		"phosel_noCut_SIEIE_HadronicFake"     : ["Sigma Ieta Ieta"            , "Events/0.0007", 1, [-1,-1], regionText, YesLog, "Hadronic Fake"],
 
-		"phosel_MassEGamma"                             : ["m_{e,#gamma} GeV",           "Events/2 GeV", 2, [60,140], regionText,  NoLog, " "],
-		"phosel_MassEGamma_GenuinePhoton"               : ["m_{e,#gamma} GeV",           "Events/2 GeV", 2, [60,140], regionText,  NoLog, " "],
-		"phosel_MassEGamma_MisIDEle"                    : ["m_{e,#gamma} GeV",           "Events/2 GeV", 2, [60,140], regionText,  NoLog, " "],
-		"phosel_MassEGamma_HadronicPhoton"              : ["m_{e,#gamma} GeV",           "Events/2 GeV", 2, [60,140], regionText,  NoLog, " "],
-		"phosel_MassEGamma_HadronicFake"                : ["m_{e,#gamma} GeV",           "Events/2 GeV", 2, [60,140], regionText,  NoLog, " "],
+		"phosel_MassEGamma"                             : ["m_{e,#gamma} GeV",           "Events/10 GeV", 10, [50,140], regionText,  NoLog, " "],
+		"phosel_MassEGamma_GenuinePhoton"               : ["m_{e,#gamma} GeV",           "Events/10 GeV", 10, [50,140], regionText,  NoLog, " "],
+		"phosel_MassEGamma_MisIDEle"                    : ["m_{e,#gamma} GeV",           "Events/10 GeV", 10, [50,140], regionText,  NoLog, " "],
+		"phosel_MassEGamma_HadronicPhoton"              : ["m_{e,#gamma} GeV",           "Events/10 GeV", 10, [50,140], regionText,  NoLog, " "],
+		"phosel_MassEGamma_HadronicFake"                : ["m_{e,#gamma} GeV",           "Events/10 GeV", 10, [50,140], regionText,  NoLog, " "],
 
 		"phosel_jet1Pt"                             : ["Leading Jet Pt (GeV)", "Events", 10, [30,400], regionText, NoLog, " "],
 		"phosel_jet1Pt_GenuinePhoton"               : ["Leading Jet Pt (GeV)", "Events", 10, [30,400], regionText, NoLog, " "],

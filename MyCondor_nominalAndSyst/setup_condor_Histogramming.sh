@@ -11,6 +11,6 @@ xrdcp -f myHistograms.tar  root://cmseos.fnal.gov//store/user/npoudyal/
 
 tar -xvf myHistograms.tar
 
-rm myHistograms.tar
+
                                                
 

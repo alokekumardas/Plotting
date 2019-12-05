@@ -360,6 +360,7 @@ for sample in sampleList:
 	tempHist = _file[sample].Get(histName%(item,sample))
 	# scale the ZJetSF
 	if sample=="ZJets": tempHist.Scale(ZJetSF)  #ZJetSF for misIDEle
+	print "%s; ZJetSF==%s"%(sample,ZJetSF)
 	if templateHist[myMisIDEle] is None:
 		templateHist[myMisIDEle] = tempHist.Clone(myMisIDEle)
 		templateHist[myMisIDEle].SetDirectory(0)
@@ -403,7 +404,7 @@ if channel =='ele':
 	binningRight  = list(numpy.arange(110,160.1,rebinLeftRight))
 	binning = numpy.array(binningLeft + binningCenter + binningRight)
 else:
-	binning = numpy.arange(40,160.1,rebinLeftRight) #20 start
+	binning = numpy.arange(50,160.1,rebinLeftRight) #20 start
 
 rebinnedHist ={} 
 for ih in templateHist:

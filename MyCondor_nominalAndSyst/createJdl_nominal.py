@@ -10,9 +10,9 @@ should_transfer_files = YES\n\
 when_to_transfer_output = ON_EXIT\n\
 Transfer_Input_Files = myHistograms.tar, makeHistograms_condor_nominal.sh\n\
 use_x509userproxy = true \n\
-Output = condor/log$(cluster)_$(process).stdout\n\
-Error  = condor/log$(cluster)_$(process).stderr\n\
-Log    = condor/log$(cluster)_$(process).condor\n\n'
+Output = condor_Dec5/log$(cluster)_$(process).stdout\n\
+Error  = condor_Dec5/log$(cluster)_$(process).stderr\n\
+Log    = condor_Dec5/log$(cluster)_$(process).condor\n\n'
 cfile.write(common_command)
 
 for year in ["2016", "2017", "2018"]:

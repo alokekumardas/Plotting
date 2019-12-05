@@ -60,6 +60,10 @@ parser.add_option("--dilepmassPlots","--dilepmassPlots", dest="Dilepmass",action
 					 
 parser.add_option("--makePlotsForSF","--makePlotsForSF", dest="makePlotsForSF",action="store_true",default=False,
 					 help="misidele stuff" )
+					 
+parser.add_option("--makePlotsFlavour", dest="makePlotsFlavour",action="store_true",default=False,
+					 help="flavour splitting " )
+					 					 
 ### nabin
 parser.add_option("--LooseCR2e1","--looseCR2e1", dest="isLooseCR2e1Selection",default=False,action="store_true",
 					 help="Use 2j exactly 1t control region selection" )
@@ -139,6 +143,7 @@ isLooseCRe2e2Selection   = options.isLooseCRe2e2Selection
 isLooseCRe3ge2Selection  = options.isLooseCRe3ge2Selection
 
 makePlotsForSF = options.makePlotsForSF
+makePlotsFlavour =options.makePlotsFlavour
 ## nabin
 isLooseCR2e1Selection = options.isLooseCR2e1Selection
 isLooseCRe2g1Selection = options.isLooseCRe2g1Selection
@@ -175,8 +180,8 @@ if testoneplot:
 
 isQCD = False
 dir_=""
-Q2 = 1.
-Pdf = 1.
+Q2 = "q2weight_nominal"
+Pdf = "pdfWeight"
 Pileup ="PUweight"
 MuEff = "muEffWeight"
 EleEff= "eleEffWeight"
@@ -190,17 +195,17 @@ btagWeight="btagWeight_1a"
 
 #atleast 0, atleast 1, atleast 2, exactly 1, btagWeight[0] = exactly 0
 
-if (syst=="isr" or syst=="fsr") and sample=="TTbar":
-	samples={"TTbar": [["TTbarPowheg_Dilepton_%s_AnalysisNtuple.root"%selYear,
-							"TTbarPowheg_Hadronic_%s_AnalysisNtuple.root"%selYear,
-							"TTbarPowheg_Semilepton_%s_AnalysisNtuple.root"%selYear,
+#if (syst=="isr" or syst=="fsr") and sample=="TTbar":
+#	samples={"TTbar": [["TTbarPowheg_Dilepton_%s_AnalysisNtuple.root"%selYear,
+#							"TTbarPowheg_Hadronic_%s_AnalysisNtuple.root"%selYear,
+#							"TTbarPowheg_Semilepton_%s_AnalysisNtuple.root"%selYear,
 							#"TTbarPowheg4_AnalysisNtuple.root",
-						   ],
-						  kRed+1,
-						  "t#bar{t}",
-						  isMC
-						  ],
-			}
+#						   ],
+#						  kRed+1,
+#						  "t#bar{t}",
+#						  isMC
+#						  ],
+#			}
 
 if finalState=="Mu":
 	sampleList[-1] = "DataMu"
@@ -282,7 +287,19 @@ if finalState=="Mu":
 				btagWeight = "btagWeight_1a_l_Do"
 			outputhistName = "histograms_%s/mu/%s_BTagSF_l_%s"%(selYear,outputFileName,level)
 		
-	
+		elif 'fsr' in syst:
+			if level=="up":
+				fsr = "FSRweight_Up"
+			else:
+				fsr = "FSRweight_Do"
+			outputhistName = "histograms_%s/mu/%s_fsr_%s"%(selYear,outputFileName,level)
+			
+		elif 'isr' in syst:
+			if level=="up":
+				isr = "ISRweight_Up"
+			else:
+				isr = "ISRweight_Do"
+			outputhistName = "histograms_%s/mu/%s_isr_%s"%(selYear,outputFileName,level)
 	#	elif syst=="isr" or syst=="fsr":
 	#		if level=="up":
 	#			analysisNtupleLocation = "root://cmseos.fnal.gov//store/user/aldas/NanoAOD/TTGamma_17/13TeV_AnalysisNtuples/muons/%s_up_"%(syst)
@@ -426,7 +443,21 @@ elif finalState=="Ele":
 				#btagWeightCategory = ["1","(1-btagWeight_Do[0])","(btagWeight_Do[2])","(btagWeight_Do[1])"]
 				btagWeight = "btagWeight_1a_l_Do"
 			outputhistName = "histograms_%s/ele/%s_BTagSF_l_%s"%(selYear,outputFileName,level)
-		
+
+		elif 'fsr' in syst:
+			if level=="up":
+				fsr = "FSRweight_Up"
+			else:
+				fsr = "FSRweight_Do"
+			outputhistName = "histograms_%s/ele/%s_fsr_%s"%(selYear,outputFileName,level)
+			
+		elif 'isr' in syst:
+			if level=="up":
+				isr = "ISRweight_Up"
+			else:
+				isr = "ISRweight_Do"
+			outputhistName = "histograms_%s/ele/%s_isr_%s"%(selYear,outputFileName,level)
+			
 	
 	#	elif syst=="isr" or syst=="fsr":
 	#		if level=="up":
@@ -453,8 +484,8 @@ elif finalState=="Ele":
 	extraCutsVeryTight       = "(passPresel_Ele && nJet>=4 && nBJet>=2)*"
 	extraPhotonCutsVeryTight = "(passPresel_Ele && nJet>=4 && nBJet>=2 && %s)*"
 
-	extraCutsTight0b       = "(passPresel_Ele && nJet>=4 && nBJet==0)*"
-	extraPhotonCutsTight0b = "(passPresel_Ele && nJet>=4 && nBJet==0 && %s)*"
+	extraCutsTight0b         = "(passPresel_Ele && nJet>=4 && nBJet==0)*"
+	extraPhotonCutsTight0b   = "(passPresel_Ele && nJet>=4 && nBJet==0 && %s)*"
 
 	extraCutsLooseCR2e1       = "(passPresel_Ele && nJet>=2 && nBJet==1)*"
 	extraPhotonCutsLooseCR2e1 = "(passPresel_Ele && nJet>=2 && nBJet==1 && %s)*"
@@ -979,6 +1010,9 @@ weights = "%s*%s*%s*%s*%s*%s*%s"%(evtWeight,Pileup,MuEff,EleEff,Q2,Pdf,btagWeigh
 print extraCuts
 print extraPhotonCuts
 print "using weights", weights
+
+
+
 if not runQuiet: print " the output folder is:", outputhistName
 
 from HistogramListDict import *
@@ -993,6 +1027,8 @@ if plotList is None:
 		if not runQuiet: print "Making full list of plots"
 	elif makeJetsplots:
 		plotList = ["presel_jet2Pt","presel_jet3Pt", "presel_jet4Pt"]
+	elif makePlotsFlavour:
+		plotList =["phosel_MassEGamma_LightTag","phosel_MassEGamma_CTag","phosel_MassEGamma_BTag"] 
 	elif makePlotsForSF:
 		plotList =["presel_Njet","presel_WtransMass", "phosel_MassEGamma", "phosel_MassEGamma_GenuinePhoton",  
 	   "phosel_MassEGamma_MisIDEle", "phosel_MassEGamma_HadronicPhoton", "phosel_MassEGamma_HadronicFake",
@@ -1167,7 +1203,7 @@ if not "QCD_DD" in sample:
 	fileList = [x for x in fileList1 if not any(y in x for y in elementsToRemove)] 
 	
 	for fileName in fileList:
-		print "==> ",fileName
+		#print "==> ",fileName
 		tree.Add("%s%s"%(analysisNtupleLocation,fileName))
 
 	for hist in histogramsToMake:
@@ -1179,10 +1215,13 @@ if not "QCD_DD" in sample:
 		histograms.append(TH1F("%s_%s"%(h_Info[1],sample),"%s_%s"%(h_Info[1],sample),h_Info[2][0],h_Info[2][1],h_Info[2][2]))
 		if h_Info[4]=="":
 			evtWeight = "%s%s"%(h_Info[3],weights)
+
 		else:
 			evtWeight = h_Info[4]
+
 		if "Data" in sample:
 			evtWeight = "%s%s"%(h_Info[3],weights)
+
 		if evtWeight[-1]=="*":
 			evtWeight= evtWeight[:-1]
 		### Correctly add the photon weights to the plots
@@ -1195,11 +1234,13 @@ if not "QCD_DD" in sample:
 				evtWeight = "%s*%s[0]"%(evtWeight,PhoEff)
 		tree.Draw("%s>>%s_%s"%(h_Info[0],h_Info[1],sample),evtWeight)
 
+## histogramtodraw, cuts(passPresel_Mu && nJet>=4 && nBJet>=1 && nPho==1) weight*evtWeight*PUweight*muEffWeight*eleEffWeight*1.0*1.0*btagWeight_1a
+
 if not os.path.exists(outputhistName):
 	os.makedirs(outputhistName)
 
 eosdir = "root://cmseos.fnal.gov//store/user/npoudyal/"
-localdir = "/uscms_data/d3/npoudyal/TTGammaSemiLeptonic13TeV/CMSSW_10_2_14/src/TTGammaSemiLep_13TeV/Plotting/"
+localdir = "/uscms_data/d3/npoudyal/TTGammaSemiLeptonic13TeV/CMSSW_10_2_14/src/TTGammaSemiLep_13TeV/Plotting_Nabin/Plotting/"
 if options.condor:
 #	stdout, stderr = subprocess.Popen("BASH COMMAND", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
 	command = ["xrdcp","-f",eosdir+outputhistName+"/"+sample+".root", localdir+outputhistName+"/"]

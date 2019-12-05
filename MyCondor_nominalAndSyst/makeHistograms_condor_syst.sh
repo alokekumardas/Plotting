@@ -34,7 +34,7 @@ else
 
 fi
 
-outputdir="root://cmseos.fnal.gov//store/user/npoudyal/"
+outputdir="root://cmseos.fnal.gov//store/user/npoudyal"
 
 echo "Running python makeHistograms "
 declare -a SampleList=("TTGamma" "TTbar" "TGJets" "SingleTop" "WJets" "ZJets" "WGamma" "ZGamma" "Diboson" "TTV" "GJets" "QCD" "Data" )
@@ -43,10 +43,12 @@ declare -a SampleListMu=("TTGamma" "TTbar" "TGJets" "SingleTop" "WJets" "ZJets" 
 
 for mysample in ${SampleList[@]}; do
 	python makeHistograms.py -c $channel -y $year --$controlRegion -s $mysample --syst $systX --level $levelX --makePlotsForSF
+	#python makeHistograms.py -c $channel -y $year --$controlRegion -s $mysample --syst $systX --level $levelX --plot phosel_MET
 done
 wait
 #loop finishes
-#make directory in eos first only if not exist there and then copy the file below
+#make directory in eos first only if not exist there and then copy the file belo
+
 printf "Everything is done now copying all files to eos area"
 
 if [ $channel == "Ele" ]; then

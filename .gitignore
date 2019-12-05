@@ -24,3 +24,6 @@ ZJetSFvalues.py
 makeVGammaSF.py
 myroottest.py
 
+CombineFitting/MisIDEleFittingSystematicsSeparateYear/combine_logger.out
+MyCondor_nominalAndSyst/condor_Dec4
+MyCondor_nominalAndSyst/condor_Dec5

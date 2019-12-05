@@ -2,7 +2,7 @@ ControlRegion=["tight", "looseCRge2e0", "looseCRge2ge0", "looseCRe3ge2", "looseC
 SampleListEle=["TTGamma", "TTbar", "TGJets", "WJets", "ZJets", "WGamma", "ZGamma", "Diboson", "SingleTop", "TTV","QCDEle" ,"GJets" ,"DataEle" ]
 SampleListMu= ["TTGamma", "TTbar" ,"TGJets" ,"WJets", "ZJets" ,"WGamma" ,"ZGamma","Diboson", "SingleTop", "TTV" ,"QCDMu", "GJets" ,"DataMu" ]
 
-systematics = ["PU","MuEff","PhoEff","BTagSF_b","BTagSF_l"]
+systematics = ["PU","MuEff","PhoEff","BTagSF_b","BTagSF_l","EleEff","Q2","Pdf","isr","fsr"]
 
 for syst in systematics:
 	myfile = open('condor_makeHistograms_%s.jdl'%syst,'w')
@@ -13,9 +13,9 @@ should_transfer_files = YES\n\
 when_to_transfer_output = ON_EXIT\n\
 Transfer_Input_Files = myHistograms.tar, makeHistograms_condor_syst.sh\n\
 use_x509userproxy = true\n\
-Output = condor_Nov15/log$(cluster)_$(process).stdout\n\
-Error  = condor_Nov15/log$(cluster)_$(process).stderr\n\
-Log    = condor_Nov15/log$(cluster)_$(process).condor\n\n'
+Output = condor_Dec5/log$(cluster)_$(process).stdout\n\
+Error  = condor_Dec5/log$(cluster)_$(process).stderr\n\
+Log    = condor_Dec5/log$(cluster)_$(process).condor\n\n'
 
 	myfile.write(common_command)
 

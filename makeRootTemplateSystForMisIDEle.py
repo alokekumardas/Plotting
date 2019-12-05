@@ -10,7 +10,8 @@ import sampleInformation
 from numpy import log10
 from array import array
 
-from getFullYearMisIDEleSF import getFullYearMisIDEleSF
+#from getFullYearMisIDEleSF import getFullYearMisIDEleSF
+from getMisIDEleSF import getMisIDEleSF
 from getZJetsSF import getZJetsSF
 
 from colorama import Fore, Back, Style 
@@ -142,9 +143,9 @@ if looseCRge2ge0:  #AR
 
 if looseCRge2e0:  #CR1+CR2+CR3
 	isSelectionDir = "looseCRge2e0"
-	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
+	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
 	if systematics in allsystematics:
 		fileDir  = "histograms_%s/%s/hists_%s_%s_looseCRge2e0/"%(selYear, channel,systematics,level)
 		plotDirectory = "misIDEle_syst_looseCRge2e0plots_%s/"%(selYear)		
@@ -156,9 +157,9 @@ if looseCRge2e0:  #CR1+CR2+CR3
 ###
 if looseCRe2e0:  #CR1
 	isSelectionDir = "looseCRe2e0"
-	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);			
+	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);			
 	if systematics in allsystematics:
 		fileDir  = "histograms_%s/%s/hists_%s_%s_looseCRe2e0/"%(selYear, channel,systematics,level)
 		plotDirectory = "misIDEle_syst_looseCRe2e0plots_%s/"%(selYear)
@@ -169,9 +170,9 @@ if looseCRe2e0:  #CR1
 
 if looseCRe3e0:  #CR2
 	isSelectionDir = "looseCRe3e0"
-	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
+	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
 	if systematics in allsystematics:
 		fileDir  = "histograms_%s/%s/hists_%s_%s_looseCRe3e0/"%(selYear, channel,systematics,level)
 		plotDirectory = "misIDEle_syst_looseCRe3e0plots_%s/"%(selYear)
@@ -182,9 +183,9 @@ if looseCRe3e0:  #CR2
 
 if looseCRge4e0:  #CR3
 	isSelectionDir = "looseCRge4e0"
-	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
+	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
 	if systematics in allsystematics:
 		fileDir  = "histograms_%s/%s/hists_%s_%s_looseCRge4e0/"%(selYear, channel,systematics,level)
 		plotDirectory = "misIDEle_syst_looseCRge4e0plots_%s/"%(selYear)
@@ -195,9 +196,9 @@ if looseCRge4e0:  #CR3
 
 if looseCRe2e1:  #CR4
 	isSelectionDir = "looseCRe2e1"
-	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
-	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getFullYearMisIDEleSF(selYear,isSelectionDir);
+	if selYear  =='2016': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	elif selYear=='2017': ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	else :                ZJetSF = getZJetsSF(selYear,isSelectionDir); MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
 	if systematics in allsystematics:
 		fileDir  = "histograms_%s/%s/hists_%s_%s_looseCRe2e1/"%(selYear, channel,systematics,level)
 		plotDirectory = "misIDEle_syst_looseCRe2e1plots_%s/"%(selYear)
@@ -388,7 +389,7 @@ if channel =='ele':
 	binningRight  = list(numpy.arange(110,160.1,rebinLeftRight))
 	binning = numpy.array(binningLeft + binningCenter + binningRight)
 else:
-	binning = numpy.arange(40,160.1,rebinLeftRight) #20 start
+	binning = numpy.arange(50,160.1,rebinLeftRight) #20 start
 
 rebinnedHist ={} 
 for ih in templateHist:
