@@ -9,7 +9,8 @@ import sampleInformation
 from numpy import log10
 from array import array
 
-from getFullYearMisIDEleSF import getFullYearMisIDEleSF
+#from getFullYearMisIDEleSF import getFullYearMisIDEleSF
+from getMisIDEleSF import getMisIDEleSF
 from getZJetsSF import getZJetsSF
 
 
@@ -234,14 +235,14 @@ if isLooseCRge2e0Selection: #
 		regionText = ", N_{j}#geq2, N_{b}=0"
 
 if isLooseCRe2e0Selection:
-	isSelection = "looseCRge2e0" # notice the different control region 
+	isSelectionDir = "looseCRe2e0" # notice the different control region 
 	#ZJetSF = getZJetsSF(selYear,isSelection);
 	#if selYear  =='2016': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (2.106,1.028,1.348)
 	#elif selYear=='2017': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (2.453,1.028,1.348) 
 	#else :                ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (1.625,1.028,1.348)
-	if selYear  =='2016': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (2.090,1.089,1.342)
-	elif selYear=='2017': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (2.470,1.089,1.342) 
-	else :                ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (1.596,1.089,1.342)
+	if selYear  =='2016': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	elif selYear=='2017': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	else :                ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
 	if Dilepmass:
 		plotDirectory = "looseCRe2e0plots_%s_%s_Dilep/"%(channel,selYear)
 		_fileDir = "histograms_%s/%s/Dilep_hists_looseCRe2e0/"%(selYear,channel)
@@ -253,13 +254,13 @@ if isLooseCRe2e0Selection:
 
 
 if isLooseCRe3e0Selection:
-	isSelection = "looseCRge2e0"
+	isSelectionDir = "looseCRe3e0"
 	#if selYear  =='2016': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (2.189,1.103,1.478)
 	#elif selYear=='2017': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (2.627,1.103,1.478)
 	#else :                ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (1.631,1.103,1.478)
-	if selYear  =='2016': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (2.090,1.089,1.342)
-	elif selYear=='2017': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (2.470,1.089,1.342) 
-	else :                ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = (1.596,1.089,1.342)
+	if selYear  =='2016': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	elif selYear=='2017': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	else :                ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
 
 	if Dilepmass:
 		plotDirectory = "looseCRe3e0plots_%s_%s_Dilep/"%(channel,selYear)
@@ -282,6 +283,11 @@ if isLooseCRge4e0Selection:
 		regionText = ", N_{j}#geq4, N_{b}=0"
 				
 if isLooseCRe2e1Selection:
+	isSelectionDir = "looseCRe2e1"
+	if selYear  =='2016': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	elif selYear=='2017': ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+	else :                ZJetSF = 1.22; MisIDEleSF,ZGammaSF,WGammaSF = getMisIDEleSF(selYear,isSelectionDir);
+
 	if Dilepmass:
 		plotDirectory = "looseCRe2e1plots_%s_%s_Dilep/"%(channel,selYear)
 		_fileDir = "histograms_%s/%s/Dilep_hists_looseCRe2e1/"%(selYear,channel)
@@ -904,7 +910,8 @@ def drawHist(histName,plotInfo, plotDirectory, _file, skipData = False):
 		
 		if sample=="ZGamma":
 			hist.Scale(ZGammaSF)
-
+		print "==> all sfs ==>", ZJetsSF,ZGammaSF,WGammaSF
+		
 		if type(hist)==type(TObject()):continue
 		hist = hist.Clone(sample)	
 		hist.SetFillColor(samples[sample][1])
@@ -933,7 +940,7 @@ def drawHist(histName,plotInfo, plotDirectory, _file, skipData = False):
 
 	elif 'Mu' in finalState:
 		dataHist = _file["DataMu"].Get("%s_DataMu"%(histName))
-
+	#print "==>",dataHist.GetBinContent(1);
 	noData = False
 	if type(dataHist)==type(TObject()): noData = True
 
@@ -1022,7 +1029,7 @@ def drawHist(histName,plotInfo, plotDirectory, _file, skipData = False):
 	#_text.Draw()
 	if selYear == '2016':
 		MC = stack.GetStack().Last().Clone("MC")
-		x = dataHist.Chi2Test(MC,"UW CHI2/NDF") 
+		x = MC.Chi2Test(dataHist,"UU CHI2/NDF") 
 		chi2Text = "#chi^{2}/NDF=%.2f"%x
 		CMS_lumi.channelText =  "#splitline{%s}{%s}"%(_channelText+plotInfo[4],chi2Text)
 
