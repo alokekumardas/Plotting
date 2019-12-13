@@ -180,8 +180,8 @@ if testoneplot:
 
 isQCD = False
 dir_=""
-Q2 = "q2weight_nominal"
-Pdf = "pdfWeight"
+Q2 = 1.  
+Pdf = 1. 
 Pileup ="PUweight"
 MuEff = "muEffWeight"
 EleEff= "eleEffWeight"
@@ -214,8 +214,8 @@ if finalState=="Mu":
 		sample = "DataMu"
 	if sample=="QCD":
 		sample = "QCDMu"
-	#analysisNtupleLocation = "root://cmseos.fnal.gov//store/user/lpctop/TTGamma/13TeV_AnalysisNtuples_2019/muons/V08_00_26_07/" /store/user/lpctop/TTGamma_FullRun2/AnalysisNtuples/2016
-	analysisNtupleLocation = "root://cmseos.fnal.gov//store/user/lpctop/TTGamma_FullRun2/AnalysisNtuples/%s/"%selYear # need to change to 2017 or sth else
+
+	analysisNtupleLocation = "root://cmseos.fnal.gov//store/user/lpctop/TTGamma_FullRun2/AnalysisNtuples/%s/"%selYear 
 	outputhistName = "histograms_%s/mu/%s"%(selYear, outputFileName)
 	if runsystematic:
 		if syst=="PU":
