@@ -104,8 +104,8 @@ if finalState=='Mu':
 #######
 ########
 
-allsystematics = ["PU","MuEff","BTagSF_l","PhoEff", "BTagSF_b"]
-
+#allsystematics = ["PU","MuEff","BTagSF_l","PhoEff", "BTagSF_b","EleEff","Q2","Pdf","fsr","isr"]
+allsystematics = ["PU","MuEff","BTagSF_l","PhoEff", "BTagSF_b","EleEff","Q2","fsr","isr","Pdf"]
 if systematics in allsystematics: print "running on systematics"
 else: print(Fore.RED + "systematics is not in list. Add the systematics in the list if you are running for systematics.")
 
@@ -422,6 +422,9 @@ if systematics=='':
 ## input to combine , open root file
 
 myfile = TFile("%s%s.root"%(plotDirectory,myfilename),"update")
+# i have to get the nominal histogram from root file first and get the integration value
+
+
 
 if systematics=='':
 	myDatahist = rebinnedData.Clone("nominal")
@@ -439,13 +442,21 @@ if systematics=='':
 # create directory only if it does not exist
 ### ele channel
 for iprocess in template_category.keys():
+
 	myfile.cd()
 	mydir =  "%s/%s/"%(channel,iprocess) 
 	print "%s/%s/"%(channel,iprocess) 
+
 	if systematics=='':
 		myhist = rebinnedHist[iprocess].Clone("nominal")
 	else:
 		myhist = rebinnedHist[iprocess].Clone("%s%s"%(systematics,mylevel))
+		if systematics == "PU":
+			myNominalHist = myfile.Get(mydir+"nominal")
+			valNominal = myNominalHist.Integral()
+			print valNominal
+			val = myhist.Integral()
+			myhist.Scale(valNominal/val)
 	
 	if myfile.GetDirectory(mydir):
 		gDirectory.cd(mydir)
