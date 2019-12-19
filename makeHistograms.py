@@ -5,8 +5,11 @@ from sampleInformation import sampleList
 import sampleInformation
 import os
 from optparse import OptionParser
+from datetime import datetime
 
 from subprocess import Popen, PIPE
+
+timeString = datetime.now().strftime("%Y-%m-%d-%H:%M")
 
 parser = OptionParser()
 parser.add_option("-c", "--channel", dest="channel", default="Mu",type='str',
@@ -63,7 +66,11 @@ parser.add_option("--makePlotsForSF","--makePlotsForSF", dest="makePlotsForSF",a
 					 
 parser.add_option("--makePlotsFlavour", dest="makePlotsFlavour",action="store_true",default=False,
 					 help="flavour splitting " )
-					 					 
+
+parser.add_option("--makePlotsMEG","--makePlotsMEG", dest="makePlotsMEG",action="store_true",default=False,
+					 help="mass EG histograms" )
+					 
+
 ### nabin
 parser.add_option("--LooseCR2e1","--looseCR2e1", dest="isLooseCR2e1Selection",default=False,action="store_true",
 					 help="Use 2j exactly 1t control region selection" )
@@ -144,6 +151,7 @@ isLooseCRe3ge2Selection  = options.isLooseCRe3ge2Selection
 
 makePlotsForSF = options.makePlotsForSF
 makePlotsFlavour =options.makePlotsFlavour
+makePlotsMEG = options.makePlotsMEG
 ## nabin
 isLooseCR2e1Selection = options.isLooseCR2e1Selection
 isLooseCRe2g1Selection = options.isLooseCRe2g1Selection
@@ -178,7 +186,7 @@ nBJets = 1
 if testoneplot:
 	outputFileName="hist_new"
 
-isQCD = False
+isQCD = False # what is it doing now?
 dir_=""
 Q2 = 1.  
 Pdf = 1. 
@@ -1029,6 +1037,8 @@ if plotList is None:
 		plotList = ["presel_jet2Pt","presel_jet3Pt", "presel_jet4Pt"]
 	elif makePlotsFlavour:
 		plotList =["phosel_MassEGamma_LightTag","phosel_MassEGamma_CTag","phosel_MassEGamma_BTag"] 
+	elif makePlotsMEG:
+		plotList =["phosel_MassEGamma", "phosel_MassEGamma_GenuinePhoton", "phosel_MassEGamma_MisIDEle", "phosel_MassEGamma_HadronicPhoton", "phosel_MassEGamma_HadronicFake"] 	
 	elif makePlotsForSF:
 		plotList =["presel_Njet","presel_WtransMass", "phosel_MassEGamma", "phosel_MassEGamma_GenuinePhoton",  
 	   "phosel_MassEGamma_MisIDEle", "phosel_MassEGamma_HadronicPhoton", "phosel_MassEGamma_HadronicFake",
@@ -1212,7 +1222,7 @@ if not "QCD_DD" in sample:
 		if ('Data' in sample or isQCD) and not h_Info[5]: continue
 		if not runQuiet: print "filling", h_Info[1], sample
 		evtWeight = ""
-		histograms.append(TH1F("%s_%s"%(h_Info[1],sample),"%s_%s"%(h_Info[1],sample),h_Info[2][0],h_Info[2][1],h_Info[2][2]))
+		histograms.append(TH1F("%s_%s"%(h_Info[1],sample),"%s_%s_%s"%(h_Info[1],sample,timeString),h_Info[2][0],h_Info[2][1],h_Info[2][2]))
 		if h_Info[4]=="":
 			evtWeight = "%s%s"%(h_Info[3],weights)
 
@@ -1242,7 +1252,7 @@ if not os.path.exists(outputhistName):
 eosdir = "root://cmseos.fnal.gov//store/user/npoudyal/"
 localdir = "/uscms_data/d3/npoudyal/TTGammaSemiLeptonic13TeV/CMSSW_10_2_14/src/TTGammaSemiLep_13TeV/Plotting_Nabin/Plotting/"
 if options.condor:
-#	stdout, stderr = subprocess.Popen("BASH COMMAND", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+#	stdout, stderr = subprocess.Popen("BASH COMMAND", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate() # copy from eos to local dir
 	command = ["xrdcp","-f",eosdir+outputhistName+"/"+sample+".root", localdir+outputhistName+"/"]
 	Popen(command)
 
@@ -1257,7 +1267,7 @@ for h in histograms:
 	h.Write()
 
 if options.condor:
-	command = ["xrdcp","-f",localdir+outputhistName+"/"+sample+".root", eosdir+outputhistName+"/"]
+	command = ["xrdcp","-f",localdir+outputhistName+"/"+sample+".root", eosdir+outputhistName+"/"] #copy from local to eos
 	Popen(command)
 	
 outputFile.Close()	
