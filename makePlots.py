@@ -1,4 +1,4 @@
-from ROOT import TFile, TLegend, TCanvas, TPad, THStack, TF1, TPaveText, TGaxis, SetOwnership, TObject, gStyle,TH1F, gROOT, kBlack
+from ROOT import TFile, TLegend, TCanvas, TPad, THStack, TF1, TPaveText, TGaxis, SetOwnership, TObject, gStyle,TH1F, gROOT, kBlack,kGreen
 #from ROOT import *
 import os
 
@@ -165,6 +165,8 @@ if finalState=='Mu':
 	# 	_fileDir = "histograms_%s/mu/qcdhistsCR_tight/"%(selYear)
 	# 	plotDirectory = "plots_mu_QCDCR_%s/"%(selYear)
 	# 	regionText = ", QCD CR"
+
+#/store/user/aldas/histograms_*/ele/hists_*/QCD_DD.root
 
 if finalState=="Ele":
 	_fileDir = "histograms_%s/ele/hists/"%(selYear)
@@ -733,6 +735,8 @@ if not HasCMSStyle:
 
 ROOT.gROOT.ForceStyle()
 
+isMC=999
+print "==> ",sampleList
 
 if useQCDMC:
 	if channel=="mu":
@@ -1331,6 +1335,8 @@ def drawHist(histName,plotInfo, plotDirectory, _file, skipData = False):
 	if not noData:
 		ratio = dataHist.Clone("temp")
 		temp = stack.GetStack().Last().Clone("temp")
+		#print temp.GetNbinsX()
+		#print temp.Integral(5,16)
 		for i_bin in range(1,temp.GetNbinsX()+1):
 			temp.SetBinError(i_bin,0.)
 		ratio.Divide(temp)
@@ -1338,7 +1344,7 @@ def drawHist(histName,plotInfo, plotDirectory, _file, skipData = False):
 		ratio = dataHist.Clone("temp")
 
 		temp = stack.GetStack().Last().Clone("temp")
-		
+
 	#errorband.Divide(temp)
 	
 		
